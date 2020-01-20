@@ -1,6 +1,7 @@
 import houses from './houses.json';
 import House from '../components/House';
-const Index = () => (
+import Layout from '../components/Layout';
+const content = (
   <div>
     <h2>SafeBnB</h2>
     <div className="houses">
@@ -20,5 +21,5 @@ const Index = () => (
     </style>
   </div>
 );
-
+const Index = () => <Layout content={content} />;
 export default Index;
