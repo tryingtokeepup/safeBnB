@@ -1,6 +1,9 @@
+import Header from './Header';
+
 const Layout = props => {
   return (
     <div>
+      <Header />
       <main>{props.content}</main>
       <style jsx global>{`
         body {
