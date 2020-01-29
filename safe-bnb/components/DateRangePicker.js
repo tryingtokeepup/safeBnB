@@ -10,6 +10,8 @@ const parseDate = (string, format, locale) => {
   return DateUtils.isDate(parsed) ? parsed : null;
 };
 
+// can't pass this as an object, must be straight transformation?
+// what is diff between    => {somefunction()} and => someFunction()
 const formatDate = (date, format, locale) =>
   dateFNSFormat(date, format, { locale });
 
