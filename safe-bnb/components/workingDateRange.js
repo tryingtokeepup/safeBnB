@@ -1,17 +1,17 @@
-import DayPickerInput from 'react-day-picker/DayPickerInput';
-import dateFNSFormat from 'date-fns/format';
-import dateFNSParse from 'date-fns/parse';
-import { DateUtils } from 'react-day-picker';
 import { useState } from 'react';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import { DateUtils } from 'react-day-picker';
 
-const parseDate = (string, format, locale) => {
-  const parsed = dateFNSParse(string, format, new Date(), { locale });
-  // check if parsed is date, and if so, pass parsed in, and if not, null it
+import dateFnsFormat from 'date-fns/format';
+import dateFnsParse from 'date-fns/parse';
+
+const parseDate = (str, format, locale) => {
+  const parsed = dateFnsParse(str, format, new Date(), { locale });
   return DateUtils.isDate(parsed) ? parsed : null;
 };
 
 const formatDate = (date, format, locale) =>
-  dateFNSFormat(date, format, { locale });
+  dateFnsFormat(date, format, { locale });
 
 const format = 'dd MMM yyyy';
 
@@ -27,7 +27,7 @@ export default () => {
           formatDate={formatDate}
           format={format}
           parseDate={parseDate}
-          placeholder={`${dateFNSFormat(new Date(), format)}`}
+          placeholder={`${dateFnsFormat(new Date(), format)}`}
           dayPickerProps={{
             modifiers: {
               disabled: {
@@ -35,8 +35,8 @@ export default () => {
               }
             }
           }}
-          onDayChange={selectedDay => {
-            setStartDate(selectedDay);
+          onDayChange={day => {
+            setStartDate(day);
           }}
         />
       </div>
@@ -46,7 +46,7 @@ export default () => {
           formatDate={formatDate}
           format={format}
           parseDate={parseDate}
-          placeholder={`${dateFNSFormat(new Date(), format)}`}
+          placeholder={`${dateFnsFormat(new Date(), format)}`}
           dayPickerProps={{
             modifiers: {
               disabled: {
@@ -54,8 +54,8 @@ export default () => {
               }
             }
           }}
-          onDayChange={selectedDay => {
-            setEndDate(selectedDay);
+          onDayChange={day => {
+            setEndDate(day);
           }}
         />
       </div>
@@ -66,7 +66,6 @@ export default () => {
           grid-template-columns: 30% 70%;
           padding: 10px;
         }
-
         label {
           padding-top: 10px;
         }
@@ -75,7 +74,7 @@ export default () => {
         .DayPickerInput input {
           width: 120px;
           padding: 10px;
-          font-size: 1rem;
+          font-size: 16px;
         }
       `}</style>
     </div>
