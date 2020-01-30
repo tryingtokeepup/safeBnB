@@ -61,6 +61,17 @@ export default () => {
           }}
           onDayChange={selectedDay => {
             setStartDate(selectedDay);
+            if (diffNightsBetweenDates(selectedDay, endDate) < 1) {
+              const newEndDate = new Date(selectedDay);
+              newEndDate.setDate(newEndDate.getDate() + 1);
+              // can we use a callback to send a console log confirming this change?
+              setEndDate(newEndDate);
+              // can we use a callback to send a console log confirming this change?
+              // test: guess we can't; that's been depreciated/not supported
+              //   setEndDate(newEndDate, () => {
+              //     console.log('changing endDate to one day after startDate!');
+              //   });
+            }
           }}
         />
       </div>
@@ -76,9 +87,9 @@ export default () => {
             modifiers: {
               disabled: [
                 //   instantiate a new Date() object to get today's date, and then disable any date before that date
-                new Date(),
+                startDate,
                 {
-                  before: new Date()
+                  before: startDate
                 }
               ]
             }
