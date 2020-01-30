@@ -17,9 +17,30 @@ const formatDate = (date, format, locale) =>
 
 const format = 'dd MMM yyyy';
 
+const today = new Date();
+// I guess this is to make sure that they are instantiated with the exact same values, so we don't get weird bugs
+// when the two variables MIGHT be off if one is made just before midnight and the other is made at midnight
+const tomorrow = new Date(today);
+// set tomorrow one day after today
+tomorrow.setDate(tomorrow.getDate() + 1);
+
+// make function to count diff between two dates
+const diffNightsBetweenDates = (startDate, endDate) => {
+  const start = new Date(startDate); // clone the dates so we don't mutate original data
+  const end = new Date(endDate);
+  let nightCount = 0;
+
+  while (end > start) {
+    nightCount += 1;
+    start.setDate(start.getDate() + 1);
+  }
+  return nightCount;
+};
+
 export default () => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  // pass in today and tomorrow into state
+  const [startDate, setStartDate] = useState(today);
+  const [endDate, setEndDate] = useState(tomorrow);
 
   return (
     <div className="date-range-picker-container">
@@ -28,6 +49,7 @@ export default () => {
         <DayPickerInput
           formatDate={formatDate}
           format={format}
+          value={startDate}
           parseDate={parseDate}
           placeholder={`${dateFNSFormat(new Date(), format)}`}
           dayPickerProps={{
@@ -47,13 +69,18 @@ export default () => {
         <DayPickerInput
           formatDate={formatDate}
           format={format}
+          value={endDate}
           parseDate={parseDate}
           placeholder={`${dateFNSFormat(new Date(), format)}`}
           dayPickerProps={{
             modifiers: {
-              disabled: {
-                before: new Date()
-              }
+              disabled: [
+                //   instantiate a new Date() object to get today's date, and then disable any date before that date
+                new Date(),
+                {
+                  before: new Date()
+                }
+              ]
             }
           }}
           onDayChange={selectedDay => {
