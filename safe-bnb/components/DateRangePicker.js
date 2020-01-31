@@ -61,12 +61,15 @@ export default ({ datesChanged }) => {
           }}
           onDayChange={selectedDay => {
             setStartDate(selectedDay);
+            const newEndDate = new Date(selectedDay);
+
             if (diffNightsBetweenDates(selectedDay, endDate) < 1) {
-              const newEndDate = new Date(selectedDay);
               newEndDate.setDate(newEndDate.getDate() + 1);
               // can we use a callback to send a console log confirming this change?
               setEndDate(newEndDate);
             }
+            // alert the parent component (pages) that dates changed by passing selectedday and new endDate to datesChanged()
+            datesChanged(selectedDay, newEndDate);
           }}
         />
       </div>
@@ -91,6 +94,7 @@ export default ({ datesChanged }) => {
           }}
           onDayChange={selectedDay => {
             setEndDate(selectedDay);
+            datesChanged(startDate, selectedDay);
           }}
         />
       </div>

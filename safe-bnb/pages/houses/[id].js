@@ -22,7 +22,11 @@ const House = props => (
         </article>
         <aside>
           <h2>Add some dates for pricing</h2>
-          <DateRangePicker />
+          <DateRangePicker
+            datesChanged={(startDate, endDate) => {
+              console.log(startDate, endDate);
+            }}
+          />
         </aside>
         <style jsx>{`
           .container {
