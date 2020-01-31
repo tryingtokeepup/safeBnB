@@ -36,8 +36,8 @@ const diffNightsBetweenDates = (startDate, endDate) => {
   }
   return nightCount;
 };
-
-export default () => {
+// pass in a function down from pages as props to this function
+export default ({ datesChanged }) => {
   // pass in today and tomorrow into state
   const [startDate, setStartDate] = useState(today);
   const [endDate, setEndDate] = useState(tomorrow);
@@ -66,11 +66,6 @@ export default () => {
               newEndDate.setDate(newEndDate.getDate() + 1);
               // can we use a callback to send a console log confirming this change?
               setEndDate(newEndDate);
-              // can we use a callback to send a console log confirming this change?
-              // test: guess we can't; that's been depreciated/not supported
-              //   setEndDate(newEndDate, () => {
-              //     console.log('changing endDate to one day after startDate!');
-              //   });
             }
           }}
         />
