@@ -71,6 +71,16 @@ const House = props => {
               border: 1px solid #ccc;
               padding: 20px;
             }
+            button {
+              background-color: rgb(255, 90, 95);
+              color: white;
+              font-size: 1rem;
+              width: 100%;
+              border: none;
+              height: 40px;
+              border-radius: 3px;
+              cursor: pointer;
+            }
           `}</style>
         </div>
       }
