@@ -1,10 +1,14 @@
 import Header from './Header';
+import Modal from './Modal';
 
+import { useState } from 'react';
 const Layout = props => {
+  const [showModal, setShowModal] = useState(true);
   return (
     <div>
       <Header />
       <main>{props.content}</main>
+      {showModal && <Modal>test</Modal>}
       <style jsx global>{`
         body {
           margin: 0;
