@@ -4,11 +4,14 @@ import Modal from './Modal';
 import { useState } from 'react';
 const Layout = props => {
   const [showModal, setShowModal] = useState(true);
+  // make true for testing
+  const [showLoginModal, setShowLoginModal] = useState(true);
+  const [showRegistrationModal, setShowRegistrationModal] = useState(false);
   return (
     <div>
       <Header />
       <main>{props.content}</main>
-      {showModal && <Modal>test</Modal>}
+      {showModal && <Modal close={() => setShowModal(false)}>test</Modal>}
       <style jsx global>{`
         body {
           margin: 0;
