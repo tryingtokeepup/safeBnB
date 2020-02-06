@@ -1,6 +1,7 @@
 import Header from './Header';
 import Modal from './Modal';
-
+import LoginModal from './LoginModal';
+import RegistrationModal from './RegistrationModal';
 import { useState } from 'react';
 const Layout = props => {
   const [showModal, setShowModal] = useState(true);
@@ -11,7 +12,12 @@ const Layout = props => {
     <div>
       <Header />
       <main>{props.content}</main>
-      {showModal && <Modal close={() => setShowModal(false)}>test</Modal>}
+      {showModal && (
+        <Modal close={() => setShowModal(false)}>
+          {showLoginModal && <LoginModal />}
+          {showRegistrationModal && <RegistrationModal />}
+        </Modal>
+      )}
       <style jsx global>{`
         body {
           margin: 0;
