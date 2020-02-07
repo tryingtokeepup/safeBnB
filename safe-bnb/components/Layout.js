@@ -28,6 +28,16 @@ const Layout = props => {
           line-height: 1.5;
           color: #333;
         }
+        button {
+          background-color: rgb(255, 90, 95);
+          color: white;
+          font-size: 1rem;
+          width: 100%;
+          border: none;
+          height: 40px;
+          border-radius: 4px;
+          cursor: pointer;
+        }
       `}</style>
       <style jsx>{`
         main {
