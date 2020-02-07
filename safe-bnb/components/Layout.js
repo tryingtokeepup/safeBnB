@@ -38,6 +38,19 @@ const Layout = props => {
           border-radius: 4px;
           cursor: pointer;
         }
+
+        input[type='text'],
+        input[type='email'],
+        input[type='password'] {
+          display: block;
+          padding: 20px;
+          font-size: 20px !important;
+          width: 100%;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-bottom: 10px;
+        }
       `}</style>
       <style jsx>{`
         main {
