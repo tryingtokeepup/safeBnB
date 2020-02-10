@@ -1,4 +1,4 @@
-export default () => (
+export default props => (
   <>
     <h2>Sign Up</h2>
     <div>
@@ -11,6 +11,12 @@ export default () => (
           placeholder="Please confirm password!"
         />
         <button>Sign up! :D</button>
+        <p>
+          Oops, already have an account?
+          <a href="javascript:;" onClick={() => props.showLogin()}>
+            Login!
+          </a>
+        </p>
       </form>
     </div>
   </>
