@@ -12,9 +12,9 @@ export default props => (
         />
         <button>Sign up! :D</button>
         <p>
-          Oops, already have an account?
+          Oops, already have an account?{' '}
           <a href="javascript:;" onClick={() => props.showLogin()}>
-            Login!
+            Login
           </a>
         </p>
       </form>

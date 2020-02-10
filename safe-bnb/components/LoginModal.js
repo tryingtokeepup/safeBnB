@@ -9,9 +9,9 @@ export default props => (
         <input id="password" type="password" placeholder="Password" />
         <button>Log in. :)</button>
         <p>
-          No account? No problem!
+          No account? No problem!{' '}
           <a href="javascript:;" onClick={() => props.showSignup()}>
-            Sign up!
+            Sign up
           </a>
         </p>
       </form>
