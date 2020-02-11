@@ -2,7 +2,12 @@ export default props => (
   <>
     <h2>Sign Up</h2>
     <div>
-      <form>
+      <form
+        onSubmit={event => {
+          alert('Successful signup!');
+          event.preventDefault();
+        }}
+      >
         <input id="email" type="email" placeholder="Email address" />
         <input id="password" type="password" placeholder="Password" />
         <input

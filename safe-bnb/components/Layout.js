@@ -4,9 +4,9 @@ import LoginModal from './LoginModal';
 import RegistrationModal from './RegistrationModal';
 import { useState } from 'react';
 const Layout = props => {
-  const [showModal, setShowModal] = useState(true);
-  // make true for testing
-  const [showLoginModal, setShowLoginModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  // now make modals activate for real
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegistrationModal, setShowRegistrationModal] = useState(false);
   return (
     <div>

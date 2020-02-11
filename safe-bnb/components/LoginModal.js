@@ -3,7 +3,12 @@ export default props => (
   <>
     <h2>Log in here!</h2>
     <div>
-      <form>
+      <form
+        onSubmit={event => {
+          alert('Successful Login!');
+          event.preventDefault();
+        }}
+      >
         <input id="email" type="email" placeholder="Email Address" />
 
         <input id="password" type="password" placeholder="Password" />
