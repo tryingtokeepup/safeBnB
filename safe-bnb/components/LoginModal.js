@@ -15,7 +15,7 @@ export default props => (
         <button>Log in. :)</button>
         <p>
           No account? No problem!{' '}
-          <a href="javascript:;" onClick={() => props.showSignup()}>
+          <a href="#" onClick={() => props.showSignup()}>
             Sign up
           </a>
         </p>
