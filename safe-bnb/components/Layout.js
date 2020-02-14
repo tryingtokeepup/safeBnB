@@ -3,6 +3,8 @@ import Modal from './Modal';
 import LoginModal from './LoginModal';
 import RegistrationModal from './RegistrationModal';
 import { useState } from 'react';
+import { useStoreState, useStoreActions } from 'easy-peasy';
+
 const Layout = props => {
   const [showModal, setShowModal] = useState(false);
   // now make modals activate for real
