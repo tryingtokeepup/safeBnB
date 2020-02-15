@@ -1,5 +1,4 @@
 import { createStore, action } from 'easy-peasy';
-import { formatRelativeWithOptions } from 'date-fns/fp';
 export default createStore({
   modals: {
     // set all modal states as false, make functions to trigger states to true
