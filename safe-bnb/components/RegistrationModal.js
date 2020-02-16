@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import axios from 'axios';
 export default props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -9,9 +9,13 @@ export default props => {
       <h2>Sign Up</h2>
       <div>
         <form
-          onSubmit={event => {
-            alert('Successful signup! Here is the email: ', email);
-            console.log(email, password, passwordconfirmation);
+          onSubmit={async event => {
+            const response = await axios.post('api/auth/register', {
+              email,
+              password,
+              passwordconfirmation
+            });
+            console.log(response);
             event.preventDefault();
           }}
         >

@@ -4,5 +4,7 @@ export default (req, res) => {
     return;
   } else {
     console.log('Post request recieved');
+    console.log(req.body);
+    res.end();
   }
 };
