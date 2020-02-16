@@ -12,6 +12,13 @@ const House = props => {
         <p>
           {props.rating} ({props.reviewsCount})
         </p>
+        <style jsx>
+          {`
+            img {
+              border-radius: 8px;
+            }
+          `}
+        </style>
       </a>
     </Link>
   );
