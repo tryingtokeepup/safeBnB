@@ -4,5 +4,6 @@ export default (req, res) => {
     return;
   }
   console.log(req.body);
+  res.status(200).send('Great scots, that worked!');
   res.end();
 };
