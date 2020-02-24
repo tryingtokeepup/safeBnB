@@ -10,10 +10,24 @@ export default async (req, res) => {
   }
   // deconstruct req.body and get email, password, and passwordconfirmation
   const { email, password, passwordconfirmation } = req.body;
-  console.log(email);
-  console.log(password);
+
+  // we should check if the password and the passwordconfirmation match
+  let flag = '';
+  if (password !== passwordconfirmation) {
+    flag = 'Oh crap, we totally added it.';
+    res.end(
+      JSON.stringify({
+        status: 'error',
+        message: 'Oops, double check if the passwords match!'
+      })
+    );
+    // break out
+    return;
+  }
+
   try {
     const currentUser = await User.create({ email, password });
+    console.log('Did we add the user? => ', flag);
 
     res.end(JSON.stringify({ status: 'success', message: 'User added' }));
   } catch (error) {
