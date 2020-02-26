@@ -1,6 +1,6 @@
 import { Sequelize, Model, DataTypes } from 'sequelize';
 import { user, password, host, database } from './database.js';
-
+import bcrypt from 'bcrypt';
 //disable logging for now (overly verbose) => re-enable during debugging with logging:true
 
 const sequelize = new Sequelize(database, user, password, {
@@ -28,6 +28,17 @@ User.init(
   {
     sequelize,
     modelName: 'user',
-    timestamps: false
+    timestamps: false,
+    hooks: {
+      beforeCreate: async user => {
+        const saltRounds = 10;
+        const salt = await bcrypt.genSalt(saltRounds);
+        user.password = await bcrypt.hash(user.password, salt);
+      }
+    }
   }
 );
+
+User.prototype.isPasswordValid = async function(password) {
+  return await bcrypt.compare(password, this.password);
+};

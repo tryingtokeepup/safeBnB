@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "bcrypt": "^4.0.0",
     "date-fns": "^2.9.0",
     "easy-peasy": "^3.3.0",
     "next": "^9.2.1",
