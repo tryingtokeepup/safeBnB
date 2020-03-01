@@ -1,7 +1,18 @@
-import { Sequelize, Model, DataTypes } from 'sequelize';
-import { user, password, host, database } from './database.js';
-import bcrypt from 'bcrypt';
+// import { Sequelize, Model, DataTypes } from 'sequelize';
+// import { user, password, host, database } from './database.js';
+// import bcrypt from 'bcrypt';
 //disable logging for now (overly verbose) => re-enable during debugging with logging:true
+// moving to CommonJS to support Express/Node integration (instead of ES MODULES)
+
+const bcrypt = require('bcrypt');
+const Sequelize = require('sequelize');
+
+const Model = Sequelize.Model;
+const DataTypes = Sequelize.DataTypes;
+
+const Database = require('./database.js');
+// whoo, object destructuring
+const { user, password, host, database } = Database;
 
 const sequelize = new Sequelize(database, user, password, {
   host,
