@@ -23,7 +23,9 @@ const sequelize = new Sequelize(database, user, password, {
 // create a model for our users table: describe the data it contains and rules we want applied
 // disable null => always require an email and password
 
-export class User extends Model {}
+//export class User extends Model {}
+// change above line to CommonJS syntax
+class User extends Model {}
 
 User.init(
   {
@@ -53,3 +55,7 @@ User.init(
 User.prototype.isPasswordValid = async function(password) {
   return await bcrypt.compare(password, this.password);
 };
+
+// exporting these objects for importing into other filestructures
+exports.User = User;
+exports.sequelize = sequelize;
