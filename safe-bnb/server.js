@@ -1,6 +1,7 @@
 const express = require('express');
 const next = require('next');
 
+const session = require('express-session');
 // take the port, make sure you're in base 10, or default to 3000
 const port = parseInt(process.env.PORT, 10) || 3000;
 // dev is the value of process.env.NODE_ENV not being in production mode
@@ -13,6 +14,18 @@ const handle = nextApp.getRequestHandler();
 nextApp.prepare().then(() => {
   const server = express();
 
+  server.use(
+    session({
+      secret: 'djklafjladkfjlii123123', //random string here
+      resave: false,
+      saveUninitialized: true,
+      name: 'safebnb',
+      cookie: {
+        secure: false, // very important when on localhost
+        maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days, where a day is 24 hours
+      }
+    })
+  );
   server.all('*', (req, res) => {
     return handle(req, res);
   });
