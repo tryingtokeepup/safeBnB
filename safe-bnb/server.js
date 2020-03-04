@@ -49,4 +49,4 @@ nextApp.prepare().then(() => {
 });
 
 // for first time runs in development, uncomment line below.
-sessionStore.sync();
+//sessionStore.sync();
