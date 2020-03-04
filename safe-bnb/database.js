@@ -6,10 +6,10 @@
 // moving from ES Modules to CommonJS because of Express and Node requiring it
 
 const Database = {
-  user: 'flaviocopes',
+  user: 'kailovingfoss',
   password: '',
   host: 'localhost',
-  database: 'nextbnb'
+  database: 'safebnb'
 };
 
 module.exports = Database;

@@ -11,6 +11,16 @@ const dev = process.env.NODE_ENV !== 'production';
 const nextApp = next({ dev });
 const handle = nextApp.getRequestHandler();
 
+//===== SESSION STORAGE VIA SEQULIZESTORE =====//
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
+const User = require('./model.js').User;
+const sequelize = require('./model.js').sequelize;
+
+const sessionStore = new SequelizeStore({
+  db: sequelize
+});
+
 nextApp.prepare().then(() => {
   const server = express();
 
@@ -23,7 +33,8 @@ nextApp.prepare().then(() => {
       cookie: {
         secure: false, // very important when on localhost
         maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days, where a day is 24 hours
-      }
+      },
+      store: sessionStore
     })
   );
   server.all('*', (req, res) => {
@@ -36,3 +47,6 @@ nextApp.prepare().then(() => {
     console.log(`> Ready on http://localhost:${port}`);
   });
 });
+
+// for first time runs in development, uncomment line below.
+sessionStore.sync();
