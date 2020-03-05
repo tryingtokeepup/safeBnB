@@ -21,6 +21,12 @@ const sessionStore = new SequelizeStore({
   db: sequelize
 });
 
+//===== AUTH VIA PASSPORT =====//
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+// special note, we only have emails from users, but we can pass that in for the
+// username parameter in passport, as that is what it is looking for!
+
 nextApp.prepare().then(() => {
   const server = express();
 
