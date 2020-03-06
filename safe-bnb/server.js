@@ -27,6 +27,38 @@ const LocalStrategy = require('passport-local').Strategy;
 // special note, we only have emails from users, but we can pass that in for the
 // username parameter in passport, as that is what it is looking for!
 
+passport.use(
+  new LocalStrategy(
+    {
+      usernameField: 'email',
+      passwordField: 'password'
+    },
+    async function(email, password, done) {
+      // check if email and password exist
+      if (!email || !password) {
+        //reject it and send back a small error message
+        done('Oops, email and or password is required.', null);
+        return;
+      }
+
+      const user = await User.findOne({ where: { email: email } });
+
+      if (!user) {
+        done('User is not found.', null);
+        return;
+      }
+
+      const valid = await user.isPasswordValid(password);
+
+      if (!valid) {
+        done('Email and password do not match!', null);
+        return;
+      }
+
+      done(null, user);
+    }
+  )
+);
 nextApp.prepare().then(() => {
   const server = express();
 
